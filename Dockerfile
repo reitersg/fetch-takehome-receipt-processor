@@ -1,18 +1,17 @@
 FROM node:23-alpine
 
-WORKDIR /src
+WORKDIR /app
 
 EXPOSE 3000
 
 CMD ["npm", "start"]
 
-COPY package.json /src
+COPY package.json .
 
-COPY package-lock.json /src
+COPY package-lock.json .
 
 RUN npm ci
 
-COPY . /src
+COPY . .
 
-RUN npm build
-
+RUN npm run build
