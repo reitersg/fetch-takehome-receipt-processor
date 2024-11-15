@@ -1,6 +1,6 @@
 import { defineConfig } from 'tsup'
 
-export default defineConfig((options) => ({
+export default defineConfig(() => ({
     entry: ['src/main.ts'],
     clean: true,
     splitting: false,

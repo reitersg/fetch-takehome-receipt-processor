@@ -50,12 +50,12 @@ server.after(() => {
                 response: { 200: z.object({ id: z.string().uuid() }) },
             },
         },
-        (req, res) => {
+        (req) => {
             const receiptId = v4()
             receiptStorage.set(receiptId, req.body)
-            res.send({
-                id: receiptId,
-            })
+            return {
+                id: receiptId
+            }
         }
     )
 
@@ -64,25 +64,20 @@ server.after(() => {
         {
             schema: {
                 params: z.object({
-                    id: z.string().uuid(),
+                    id: z.string().uuid().describe("The unique identifier of the receipt"),
                 }),
                 response: {
                     200: z.object({
                         points: z.number(),
                     }),
-                    404: z.string({
-                        description: `No receipt found for that id`,
-                    }),
+                    404: z.string(),
                 },
             },
         },
         (req, res) => {
             const receipt = receiptStorage.get(req.params.id)
             if (!receipt) {
-                res.code(404).send(
-                    `No receipt found for that id ${req.params.id}`
-                )
-                throw new Error(`No receipt found for that id ${req.params.id}`)
+                return res.callNotFound();
             }
             const retailerPoints = calculateRetailer(receipt.retailer)
             const totalPricePoints = calculateTotal(receipt.total)

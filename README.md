@@ -1,6 +1,6 @@
 # Receipt Processor
 
-## Running
+## Running on Docker
 
 Run the following commands to run using Docker
 

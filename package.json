@@ -4,10 +4,10 @@
     "type": "module",
     "main": "main.js",
     "scripts": {
-        "build-container": "npm ci && npm run typecheck && npm run build",
         "build": "tsup",
         "dev": "tsx watch src/main.ts",
         "prettier": "prettier . --write",
+        "lint": "eslint .",
         "start": "node dist/main.js",
         "test": "vitest",
         "typecheck": "tsc --noEmit"

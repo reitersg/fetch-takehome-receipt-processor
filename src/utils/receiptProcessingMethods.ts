@@ -16,7 +16,7 @@ export const calculateTotal = (total: string) => {
 
 export const calculateItems = (items: ReceiptItems) => {
     // The number of item pairs are grabbed and then calculated for points here
-    let initialPoints = Math.floor(items.length / 2) * 5
+    const initialPoints = Math.floor(items.length / 2) * 5
     const finalPoints = items.reduce((points, currentItem) => {
         // Description is trimmed first before checking the length is a multiple of 3 and getting the price calculations
         const trimmedDescription = currentItem.shortDescription.trim()

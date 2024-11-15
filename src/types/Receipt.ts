@@ -8,9 +8,7 @@ const ReceiptItemsSchema = z.array(
 )
 
 export const ReceiptSchema = z.object({
-    retailer: z.string({
-        description: 'The name of the retailer or store the receipt is from.',
-    }),
+    retailer: z.string(),
     purchaseDate: z.string().date(),
     purchaseTime: z.string(),
     items: ReceiptItemsSchema,
